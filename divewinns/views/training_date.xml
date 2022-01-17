@@ -1,0 +1,71 @@
+<odoo>
+    <record model="ir.actions.act_window" id="action_training_dates">
+        <field name="name">Training Dates</field>
+        <field name="res_model">divewinns.training.date</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="divewinns_training_date_tree">
+        <field name="name">divewinns.training.date.tree</field>
+        <field name="model">divewinns.training.date</field>
+        <field name="arch" type="xml">
+            <tree string="Dates of Training">
+                <field name="name"/>
+                <field name="start"/>
+                <field name="end"/>
+                <field name="organizer_id"/>
+                <field name="room"/>
+                <field name="room_availability" widget="badge" decoration-danger="room_availability == '0'" decoration-success="room_availability == '1'"/>
+                <field name="calendar_event_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="divewinns_training_date_calendar">
+        <field name="name">divewinns.training.date.calendar</field>
+        <field name="model">divewinns.training.date</field>
+        <field name="arch" type="xml">
+            <calendar string="Training dates" mode="month" color="organizer_id" date_start="start" date_stop="end">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="divewinns_training_date_form">
+        <field name="name">divewinns.training.date.form</field>
+        <field name="model">divewinns.training.date</field>
+        <field name="arch" type="xml">
+            <form string="Dates of Training">
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="action_get_overlapping" class="oe_stat_button" icon="fa-bars" type="object" attrs="{'invisible': ['|', ('overlapping_count', '=', 0), ('calendar_event_id', '=', False)]}">
+                            <field string="Overlaps" name="overlapping_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="start"/>
+                            <field name="end"/>
+                            <field name="room"/>
+                            <field name="room_availability" widget="badge" decoration-danger="room_availability == '0'" decoration-success="room_availability == '1'" attrs="{'invisible': [('room', '=', False)]}"/>
+                            <field name="organizer_id"/>
+                        </group>
+                        <group>
+                            <field name="calendar_event_id" readonly="1"/>
+                            <field name="event_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description" placeholder="Training description..."/>
+                        </page>
+                        <!-- <page string="Attendees" name="attendees">
+                            <field name="partner_ids"/>
+                        </page> -->
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

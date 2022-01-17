@@ -1,0 +1,15 @@
+<odoo>
+    <menuitem name="Training dates"
+        id="menu_event_training"
+        sequence="2"
+        action="divewinns.action_training_dates"
+        parent="event.event_main_menu"
+        groups="event.group_event_user"/>
+
+    <menuitem name="Calendar"
+        id="menu_event_calendar"
+        action="calendar.action_calendar_event"
+        sequence="3"
+        parent="event.event_main_menu"
+        groups="event.group_event_user"/>
+</odoo>

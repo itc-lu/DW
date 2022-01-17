@@ -1,0 +1,17 @@
+<odoo>
+    <record model="ir.ui.view" id="divewinns_calendar_search">
+        <field name="name">divewinns.calendar.search</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_search" />
+        <field name="arch" type="xml">
+            <filter name="mymeetings" position="after">
+                <separator/>
+                <filter string="Trainingsroom 1" name="training1"  domain="[('room', '=', 'training1')]"/>
+                <filter string="Trainingsroom 2" name="training2"  domain="[('room', '=', 'training2')]"/>
+                <filter string="Community" name="community"  domain="[('room', '=', 'community')]"/>
+                <filter string="Pool" name="pool"  domain="[('room', '=', 'pool')]"/>
+                <filter string="Bus" name="bus"  domain="[('room', '=', 'bus')]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

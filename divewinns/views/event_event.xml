@@ -1,0 +1,17 @@
+<odoo>
+    <record id="divewinns_event_event_form" model="ir.ui.view">
+        <field name="name">divewinns.event.event.form</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form"/>
+        <field name="arch" type="xml">
+            <page name="event_notes" position="after">
+                <page string="Dates of Training" name="training_dates">
+                    <field name="training_dates_ids"/>
+                </page>
+            </page>
+            <field name="organizer_id" position="after">
+                <field name="instructor_id" required="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>
